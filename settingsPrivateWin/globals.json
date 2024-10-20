@@ -1,0 +1,39 @@
+{
+  "name": "global",
+  "description": "global settings",
+  "icon": "./icons/unknown.png",
+  "links": [
+    {
+      "name": "Explorer",
+      "description": "",
+      "type": "starter",
+      "call": "explorer",
+      "arguments": ""
+    },
+    {
+      "name": "Notepad++",
+      "description": "",
+      "type": "starter",
+      "call": "C:/Program Files/Notepad++/notepad++.exe",
+      "arguments": ""
+    },
+    {
+      "name": "GIMP",
+      "description": "",
+      "type": "starter",
+      "url": "",
+      "call": "C:/Program Files/GIMP 2/bin/gimp-2.10.exe",
+      "arguments": ""
+    },
+    {
+      "name": "Carstens Bastelecke",
+      "description": "",
+      "type": "http",
+      "url": "https://carstensbastelecke.de/"
+    }
+  ],
+  "shortcuts": {
+    "$1": "COCKPIT",
+    "$-": "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+  }
+}

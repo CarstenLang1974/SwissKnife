@@ -1,0 +1,23 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/double-arrow.png</file>
+    <file>icons/arrow-000.png</file>
+    <file>icons/arrow-180.png</file>
+    <file>icons/arrow-circle-315.png</file>
+    <file>icons/cross.png</file>
+    <file>icons/cross-circle.png</file>
+    <file>icons/disk--arrow.png</file>
+    <file>icons/arrow-090.png</file>
+    <file>icons/arrow-270.png</file>
+    <file>icons/blue-document-office.png</file>
+    <file>icons/document-bookmark.png</file>
+    <file>icons/drawer--arrow.png</file>
+    <file>icons/globe.png</file>
+    <file>icons/disk--pencil.png</file>
+    <file>icons/home.png</file>
+    <file>icons/lifebuoy.png</file>
+    <file>icons/lock-nossl.png</file>
+    <file>icons/lock-ssl.png</file>
+    <file>icons/question.png</file>
+  </qresource>
+</RCC>

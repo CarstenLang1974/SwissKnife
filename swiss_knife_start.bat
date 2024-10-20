@@ -1,0 +1,1 @@
+.\venv\Scripts\pythonw.exe main.py --settings ./settingsWork/settings.json

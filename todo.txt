@@ -1,0 +1,49 @@
+FEATURES:
+- DOORS (DOORS links, = file?)
+- default (template) für Projekt mit Links für:
+	- JIRA
+	- eDMS
+	- DOORS
+	- SVN
+	- OneNote
+	- Jenkins
+	- Projektordner (R)
+	
+- reaktion auf Doppelclick in den tree -> Link folgen wie bei Click in die Tabelle
+- schnelles Anlegen von Lesezeichen (Drag & Drop?, Copy/Paste?)
+
+DEFECTS:
+- wenn kein Projekt ausgewählt ist (global) - keine Selektion im tree/keine Ausführung
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DONE
+====
+DEFECTS:
+- Edit Link Dialog wird bei type "starter" nicht korrekt gefüllt
+- kein Speichern des ausgewählten Projekts?
+- kein Speichern des Splitters zwischen Html & Link-Tabelle
+
+FEATURES:
+- Keyreaktion enable/disable
+- EditLinkDialog - Icon editieren
+- EditLinkDialog - optimieren für alle Linktypen
+- log handler statt print
+- schnelles Anlegen von Ordner Links (add folder?)
+- schnelles Anlegen von Datei Links (add file?)
+Link Arten:
+- HTML
+- Folder
+- File
+- Links für 2 Browser (Google Chrome/InternetExplorer)
+- Zwischenablage einfügen ohne Formatierung (pyperclip.paste())
+- Tastenkürzel generell:
+    - aktuelles Datum
+    - Platzhalterzeile Python
+- settings environment linux / windows:
+    - BrowserDefault
+    - BrowserMicrosoft
+    - DOORS
+    - Explorer
+    - OpenBySystem/Starter
+    - shell
+- Lesezeichen mit Erklärungstext / Description

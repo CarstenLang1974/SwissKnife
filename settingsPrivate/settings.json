@@ -1,0 +1,13 @@
+{
+  "locals_folder": "./settings",
+  "globals": "./settingsPrivate/globals.json",
+  "projects": [
+    "./settingsPrivate/projectCockpit.json",
+    "./settingsPrivate/project3DPrint.json",
+    "./settingsPrivate/projectHomeAutomation.json"
+  ],
+  "open hotkey": "Alt+x",
+  "clipboard hotkey":"ctrl+shift+v",
+  "date hotkey":"ctrl+shift+d",
+  "frameless": false
+}

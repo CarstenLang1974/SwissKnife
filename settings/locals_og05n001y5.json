@@ -1,0 +1,9 @@
+{
+    "BrowserDefault" : "\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\"",
+    "BrowserMicrosoft" : "\"c:\\Program Files (x86)\\Internet Explorer\\iexplore.exe\"",
+    "DoorsLinkStarter" : "explorer",
+    "FileExplorer" : "explorer",
+    "Starter" : "",
+    "Shell" : "",
+    "Editor" : "c:\\Program Files\\Notepad++\\notepad++.exe"
+}

@@ -1,0 +1,32 @@
+{
+    "name" : "Home Automation",
+    "description" : "Heimautomatisierung mit Homematic CCU, Homematic IP Geräten und IOBroker",
+    "icon" : "./icons/unknown.png",
+    "links": [
+      {
+        "name" : "ASKSINPP",
+        "type" : "http",
+        "url" : "https://asksinpp.de/"
+      },
+      {
+        "name" : "HomematicForum",
+        "type" : "http",
+        "url" : "https://homematic-forum.de/forum/"
+      },
+      {
+        "name" : "My Homematic WebUI",
+        "type" : "http",
+        "url" : "http://homematic-raspi/pages/index.htm"
+      },
+      {
+        "name" : "notepad++",
+        "type" : "starter",
+        "call" : "c:\\Program Files\\Notepad++\\notepad++.exe",
+        "arguments" : ""
+      }
+    ],
+    "shortcuts": {
+      "$1": "COCKPIT",
+      "$-": "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    }
+}

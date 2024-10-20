@@ -1,0 +1,9 @@
+{
+    "BrowserDefault" : "/usr/bin/google-chrome-stable",
+    "BrowserMicrosoft" : "firefox",
+    "DoorsLinkStarter" : "nemo",
+    "FileExplorer" : "nemo",
+    "Starter" : "nemo",
+    "Shell" : "sh",
+    "Editor" : "xed"
+}

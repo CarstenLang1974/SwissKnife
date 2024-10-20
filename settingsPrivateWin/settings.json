@@ -1,0 +1,11 @@
+{
+  "locals_folder": "./settings",
+  "globals": "./settingsPrivateWin/globals.json",
+  "projects": [
+    "./settingsPrivate/projectHomeAutomation.json"
+  ],
+  "open hotkey": "Alt+x",
+  "clipboard hotkey":"ctrl+shift+v",
+  "date hotkey":"ctrl+shift+d",
+  "frameless": false
+}

@@ -1,0 +1,15 @@
+{
+  "locals_folder": "./settings",
+  "globals": "./settingsWork/globals.json",
+  "projects": [
+    "./settingsWork/projectLCM2773.json",
+    "./settingsWork/projectRefWP.json",
+    "./settingsWork/projectNeo.json",
+    "./settingsWork/projectVMax1.json",
+    "./settingsWork/projectVMax2.json"
+  ],
+  "open hotkey": "Alt+x",
+  "clipboard hotkey":"ctrl+shift+v",
+  "date hotkey":"ctrl+shift+d",
+  "frameless": false
+}
