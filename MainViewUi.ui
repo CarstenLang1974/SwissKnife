@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>814</width>
-    <height>566</height>
+    <width>532</width>
+    <height>592</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,10 @@
     <item>
      <widget class="QSplitter" name="splitter">
       <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="handleWidth">
+       <number>10</number>
       </property>
       <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -34,7 +37,6 @@
           <property name="font">
            <font>
             <pointsize>16</pointsize>
-            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -44,11 +46,29 @@
          </widget>
         </item>
         <item>
-         <widget class="QTreeView" name="treeView"/>
+         <widget class="QTreeView" name="treeView">
+          <property name="styleSheet">
+           <string notr="true">QTreeView::item:active { color: black; }   /*  When widget has focus*/
+QTreeView::item:!active { color: black; } /*  When widget doesn't have focus*/
+QTreeView::item:selected:active{
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc);
+}
+
+QTreeView::item:selected:!active {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf);
+}</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
       <widget class="QTabWidget" name="tabWidget">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="currentIndex">
         <number>1</number>
        </property>
@@ -63,7 +83,7 @@
          <item>
           <widget class="QSplitter" name="projecTabSplitter">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Orientation::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -84,8 +104,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>814</width>
-     <height>26</height>
+     <width>532</width>
+     <height>33</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuApplication">

@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import *
-from PyQt5 import QtCore
-from PyQt5.QtGui import QIcon
+from PySide6.QtWidgets import *
+from PySide6 import QtCore
+from PySide6.QtGui import QIcon
 import EditLinkDialog
 import logging
 import os
@@ -9,12 +9,12 @@ log = logging.getLogger(__name__)
 
 class LinkListView(QWidget):
     logger = logging.getLogger(__name__)
-    closeAndComplete = QtCore.pyqtSignal(str)
-    bringToFrontSignal = QtCore.pyqtSignal()
-    projectLinkDoubleClicked = QtCore.pyqtSignal(int)
-    projectLinkClicked = QtCore.pyqtSignal(int)
-    projectLinkListChanged = QtCore.pyqtSignal()
-    openUrlExtern = QtCore.pyqtSignal(str)
+    closeAndComplete = QtCore.Signal(str)
+    bringToFrontSignal = QtCore.Signal()
+    projectLinkDoubleClicked = QtCore.Signal(int)
+    projectLinkClicked = QtCore.Signal(int)
+    projectLinkListChanged = QtCore.Signal()
+    openUrlExtern = QtCore.Signal(str)
     settings = QtCore.QSettings("swissknife_ui.ini", QtCore.QSettings.IniFormat)
 
     def __init__(self, model, *args, **kwargs):
@@ -169,7 +169,7 @@ class LinkListView(QWidget):
         except Exception as e:
             log.error("exception in on_moveLinkUp", exc_info=True)
 
-    @QtCore.pyqtSlot()
+    @QtCore.Slot()
     def on_linkClick(self):
         try:
             row_number = self.tableView.selectionModel().selectedIndexes()[0].row()
@@ -178,7 +178,7 @@ class LinkListView(QWidget):
         except Exception as e:
             log.exception("exception in MainView.on_linkClick: " + str(e))
 
-    @QtCore.pyqtSlot()
+    @QtCore.Slot()
     def on_linkDoubleClick(self):
         try:
             row_number = self.tableView.selectionModel().selectedIndexes()[0].row()

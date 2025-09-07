@@ -65,7 +65,7 @@ class MainView(QMainWindow):
     def setModel(self, model):
         self.model = model
 
-    @QtCore.pyqtSlot()
+    @QtCore.Slot()
     def on_return(self):
         # attention if you don't catch exception explicit, there is no console output if the slot function has an error
         try:
@@ -74,7 +74,7 @@ class MainView(QMainWindow):
         except Exception as e:
             log.exception("exception in MainView.on_return: " + str(e))
 
-    @QtCore.pyqtSlot()
+    @QtCore.Slot()
     def on_change(self):
         # attention if you don't catch exception explicit, there is no console output if the slot function has an error
         try:

@@ -3,7 +3,7 @@ import os
 import platform
 import logging
 log = logging.getLogger(__name__)
-from PyQt5.QtGui import *
+from PySide6.QtGui import *
 from ProjectModel import ProjectModel
 
 class Model(QStandardItemModel):
@@ -209,4 +209,13 @@ class Model(QStandardItemModel):
         if "frameless" in self.settings:
             return self.settings["frameless"]
         else:
-            return False # default off
+            return False  # default off
+
+    def getPreviewEnable(self):
+        """
+        :return: preview mode defined in settings or False if not defined
+        """
+        if "preview" in self.settings:
+            return self.settings["preview"]
+        else:
+            return False  # default off

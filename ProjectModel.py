@@ -9,8 +9,9 @@ import requests
 import logging
 import Link
 log = logging.getLogger(__name__)
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+
 
 headers = ["Name", "Description", "Link"]
 
@@ -114,7 +115,7 @@ class ProjectModel(QAbstractTableModel):
                 return Link.iconsize
         except Exception as e:
             log.error("exception in Model.data: {0} with role {1}".format(str(e), role))
-        return QVariant()
+        return None
 
     def headerData(self, section, orientation, role):
         """
@@ -126,7 +127,7 @@ class ProjectModel(QAbstractTableModel):
         :return: header strings
         """
         if role != Qt.DisplayRole or orientation != Qt.Horizontal:
-            return QVariant()
+            return None
         return headers[section]
 
     def addLinkEntry(self, newEntry, index=None):

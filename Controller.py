@@ -1,16 +1,17 @@
 import platform
 from pathlib import Path
 import logging
-log = logging.getLogger(__name__)
 from datetime import date
-# if not platform.system() == "Linux":
-#     log.debug("load keyboard support")
-#     import keyboard
 import subprocess
 import os
 import MainView
-import pyperclip
 from SystemTray import SystemTrayIcon
+
+log = logging.getLogger(__name__)
+if not platform.system() == "Linux":
+    log.debug("load keyboard support")
+    import pynput
+
 
 class Controller(object):
     def __init__(self, model):

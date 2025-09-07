@@ -1,5 +1,5 @@
 {
-    "BrowserDefault" : "\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\"",
+    "BrowserDefault" : "\"C:\\Program Files\\Mozilla Firefox\\firefox.exe\"",
     "BrowserMicrosoft" : "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\"",
     "DoorsLinkStarter" : "explorer",
     "FileExplorer" : "explorer",

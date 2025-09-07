@@ -4,9 +4,9 @@ main.py
 import argparse
 import logging
 import sys
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import QFile, QTextStream
-from PyQt5.QtGui import QIcon
+from PySide6.QtWidgets import *
+from PySide6.QtCore import QFile, QTextStream
+from PySide6.QtGui import QIcon
 import Controller
 import Model
 
@@ -17,7 +17,7 @@ if __name__ == '__main__':
                         level=logging.DEBUG)
     logging.info('start swiss knife application')
     parser = argparse.ArgumentParser(description='My Python Swiss Knife')
-    parser.add_argument('--settings', dest='settings_file', default='./settings/settings.json',
+    parser.add_argument('--settings', dest='settings_file', default='./settingsTest/settings.json',
                         help='set the settings.json file to load on startup')
     args = parser.parse_args()
     logging.debug("setup: '{0}'".format(args.settings_file))
@@ -39,5 +39,5 @@ if __name__ == '__main__':
     app.setQuitOnLastWindowClosed(False)
     ctr = Controller.Controller(model)
     logging.info("start event loop, also if window is hidden")
-    app.exec_()
+    app.exec()
     logging.info("end event loop / close application")

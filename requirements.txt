@@ -1,16 +1,31 @@
-beautifulsoup4==4.11.1
-certifi==2021.10.8
-charset-normalizer==2.0.12
-favicon==0.7.0
-idna==3.3
-pyperclip==1.8.2
-PyQt5==5.15.6
-PyQt5-Qt5==5.15.2
-PyQt5-sip==12.10.1
-PyQt5Designer==5.14.1
-PyQtWebEngine==5.15.5
-PyQtWebEngine-Qt5==5.15.2
-requests==2.27.1
-soupsieve==2.3.2.post1
-urllib3==1.26.9
-wagtail-favicon==0.2.0
+#beautifulsoup4==4.11.1
+#certifi==2021.10.8
+#charset-normalizer==2.0.12
+#favicon==0.7.0
+#idna==3.3
+#pyperclip==1.8.2
+#PyQt5==5.15.6
+#PyQt5-Qt5==5.15.2
+#PyQt5-sip==12.10.1
+#PyQt5Designer==5.14.1
+#PyQtWebEngine==5.15.5
+#PyQtWebEngine-Qt5==5.15.2
+#requests==2.27.1
+#soupsieve==2.3.2.post1
+#urllib3==1.26.9
+#wagtail-favicon==0.2.0
+
+# used with python 3.13.7
+# base requirements
+pyside6==6.9.2
+
+# used in ProjectModel
+favicon
+# this also includes: beautifulsoup4, certifi, charset-normalizer, idna, requests, soupsieve, typing_extensions, urllib3
+
+# used in Controller.py to get general keyboard input
+pynput
+
+# used in pythontools folder
+matplotlib
+# this also includes contourpy, cycler, kiwisolver, numpy, packaging, pillow, pyparsing, python-dateutil, shiboken6, six, soupsieve

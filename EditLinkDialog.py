@@ -1,7 +1,7 @@
 import os
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import *
+from PySide6.QtWidgets import *
+from PySide6.QtGui import QIcon
+from PySide6.QtCore import *
 import logging
 log = logging.getLogger(__name__)
 import ProjectModel

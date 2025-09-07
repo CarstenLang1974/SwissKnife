@@ -1,22 +1,9 @@
 {
-  "locals_folder": "../settings",
+  "locals_folder": "./settings",
+  "globals": "./settingsTest/globals.json",
   "projects": [
-    "../settingsTest/projectCockpit.json",
-    "../settingsTest/projectHomeAutomation.json"
-  ],
-  "starters": [
-    {
-      "name" : "Explorer",
-      "type" : "starter",
-      "call" : "explorer",
-      "arguments" : ""
-    },
-    {
-      "name" : "notepad++",
-      "type" : "starter",
-      "call" : "c:\\Program Files\\Notepad++\\notepad++.exe",
-      "arguments" : ""
-    }
+    "./settingsTest/projectCockpit.json",
+    "./settingsTest/projectHomeAutomation.json"
   ],
   "open hotkey": "ctrl+shift+q",
   "clipboard hotkey":"ctrl+shift+v",
@@ -24,5 +11,6 @@
   "shortcuts": {
     "$-": "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
   },
-  "frameless": false
+  "frameless": false,
+  "preview": false
 }

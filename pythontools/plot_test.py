@@ -2,7 +2,7 @@ import sys
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-from PyQt5.QtWidgets import *
+from PySide6.QtWidgets import *
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 matplotlib.use('Qt5Agg')

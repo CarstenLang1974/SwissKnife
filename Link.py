@@ -8,8 +8,8 @@ import favicon
 import requests
 import logging
 log = logging.getLogger(__name__)
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
+from PySide6.QtCore import *
+from PySide6.QtGui import *
 
 CACHE_PATH = "./cache"
 iconsize = QSize(32, 32)

@@ -1,0 +1,31 @@
+{
+  "name": "global",
+  "description": "global settings",
+  "icon": "./icons/unknown.png",
+  "links": [
+    {
+      "name": "Explorer",
+      "description": "",
+      "type": "starter",
+      "call": "explorer",
+      "arguments": ""
+    },
+    {
+      "name": "Notepad++",
+      "description": "",
+      "type": "starter",
+      "call": "C:/Program Files/Notepad++/notepad++.exe",
+      "arguments": ""
+    },
+    {
+      "name": "Carstens Bastelecke",
+      "description": "",
+      "type": "http",
+      "url": "https://carstensbastelecke.de/"
+    }
+  ],
+  "shortcuts": {
+    "$1": "COCKPIT",
+    "$-": "# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+  }
+}

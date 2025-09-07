@@ -1,21 +1,22 @@
 import os
-from PyQt5 import QtWidgets, QtGui
-from PyQt5 import QtCore
+from PySide6 import QtWidgets, QtGui
+from PySide6 import QtCore
+from PySide6.QtGui import QAction
 import logging
 log = logging.getLogger(__name__)
 
 import AboutSwissKnife
 
 class RightClickMenu(QtWidgets.QMenu):
-    # switchKeyboardSignal = QtCore.pyqtSignal(bool)
+    # switchKeyboardSignal = QtCore.Signal(bool)
 
     def __init__(self, parent=None):
         QtWidgets.QMenu.__init__(self, "RightClickMenu", parent=parent)
 
         # show main window action
-        style = QtWidgets.qApp.style()
+        style = QtWidgets.QApplication.style()
         icon = QtGui.QIcon(style.standardIcon(QtWidgets.QStyle.SP_ComputerIcon))
-        self.showAction = QtWidgets.QAction(icon, "&Show Main Window", self)
+        self.showAction = QAction(icon, "&Show Main Window", self)
         self.addAction(self.showAction)
 
         # # enable/disable shortcut actions action
@@ -28,14 +29,14 @@ class RightClickMenu(QtWidgets.QMenu):
 
         # about dialog action
         icon = QtGui.QIcon(style.standardIcon(QtWidgets.QStyle.SP_DialogHelpButton))
-        self.aboutAction = QtWidgets.QAction(icon, "&About", self)
+        self.aboutAction = QAction(icon, "&About", self)
         self.aboutAction.triggered.connect(self.showAbout)
         self.addAction(self.aboutAction)
 
         # Create the icon
         icon = QtGui.QIcon(style.standardIcon(QtWidgets.QStyle.SP_BrowserStop))
-        exitAct = QtWidgets.QAction(icon, "&Exit", self)
-        exitAct.triggered.connect(QtWidgets.qApp.quit)
+        exitAct = QAction(icon, "&Exit", self)
+        exitAct.triggered.connect(QtWidgets.QApplication.quit)
         self.addAction(exitAct)
 
     def showAbout(self):
@@ -56,7 +57,7 @@ class SystemTrayIcon(QtWidgets.QSystemTrayIcon):
         self._hotkey = True
         QtWidgets.QSystemTrayIcon.__init__(self, parent)
         # Create the icon
-        style = QtWidgets.qApp.style()
+        #style = QtWidgets.qApp.style()
         #icon = QtGui.QIcon(style.standardIcon(QtWidgets.QStyle.SP_TitleBarMenuButton))
         self.iconOn = QtGui.QIcon(os.path.join('icons', 'logo.png'))
         self.iconOff = QtGui.QIcon(os.path.join('icons', 'logo_off.png'))
@@ -72,7 +73,7 @@ class SystemTrayIcon(QtWidgets.QSystemTrayIcon):
 
 
     def click_trap(self, value):
-        if value == self.Trigger:  # left click!
+        if value == self.ActivationReason.Trigger:  # left click!
             log.debug("SystemTray icon left clicked")
         #     self._hotkey = not self._hotkey
         #     if self._hotkey:
@@ -85,7 +86,6 @@ class SystemTrayIcon(QtWidgets.QSystemTrayIcon):
         #if value == self.DoubleClick:  # double click!
             self.showMainWindowSlot()
             return
-
 
     def show(self):
         self.setVisible(True)

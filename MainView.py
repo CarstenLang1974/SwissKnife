@@ -1,20 +1,22 @@
-from PyQt5.QtWidgets import *
-from PyQt5 import QtCore
-from PyQt5.QtGui import QIcon
+from PySide6.QtWidgets import *
+from PySide6 import QtCore
+from PySide6.QtGui import QIcon
 from MainViewUi import Ui_MainWindow
 import browser
 import AboutSwissKnife
 import LinkListView
 import ToolsWidget
 import logging
+
 log = logging.getLogger(__name__)
+
 
 class MainView(QMainWindow, Ui_MainWindow):
     logger = logging.getLogger(__name__)
-    closeAndComplete = QtCore.pyqtSignal(str)
-    bringToFrontSignal = QtCore.pyqtSignal()
-    projectChanged = QtCore.pyqtSignal()
-    openUrlExtern = QtCore.pyqtSignal(str)
+    closeAndComplete = QtCore.Signal(str)
+    bringToFrontSignal = QtCore.Signal()
+    projectChanged = QtCore.Signal()
+    openUrlExtern = QtCore.Signal(str)
     settings = QtCore.QSettings("swissknife_ui.ini", QtCore.QSettings.IniFormat)
 
     def __init__(self, identifiers, model):
@@ -24,7 +26,7 @@ class MainView(QMainWindow, Ui_MainWindow):
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         # setup window properties and main menu
         self.setWindowTitle("My Python Swiss Knife")
-        self.setMinimumSize(1600, 800)
+        #self.setMinimumSize(1600, 800)
         self.setWindowIcon(QIcon('icons/logo.png'))
         if model.getFramlessMode():
             self.setWindowFlags(QtCore.Qt.Window | QtCore.Qt.FramelessWindowHint)
@@ -47,16 +49,16 @@ class MainView(QMainWindow, Ui_MainWindow):
         self.treeView.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.treeView.setUniformRowHeights(True)
         self.treeView.setHeaderHidden(True)
-        #self.treeView.selectionModel().selectionChanged.connect(self.on_treeviewClicked)
+        # self.treeView.selectionModel().selectionChanged.connect(self.on_treeviewClicked)
 
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         # setup project selection buttons
         self.projectSelector = QButtonGroup()
-        self.projectSelector.buttonClicked[int].connect(self.on_projectSelector_clicked)
+        self.projectSelector.buttonClicked[QAbstractButton].connect(self.on_projectSelector_clicked)
 
         # add global button
-        style = qApp.style()
-        button_id=0
+        style = QApplication.style()
+        button_id = 0
         projects = model.getProjects()
 
         # add project buttons
@@ -70,7 +72,7 @@ class MainView(QMainWindow, Ui_MainWindow):
             self.projectSelectorLayout.addWidget(button)
             button_id += 1
         # add global button
-        style = qApp.style()
+        style = QApplication.style()
         button = QPushButton()
         button.setCheckable(True)
         button.setText("global")
@@ -84,9 +86,12 @@ class MainView(QMainWindow, Ui_MainWindow):
         # setup table view and browser widget
         self.linkListView = LinkListView.LinkListView(model.getCurrentProject())
         self.projecTabSplitter.addWidget(self.linkListView)
-        self.browserWidget = browser.BrowserWidget(self.openUrlExtern)
-        self.projecTabSplitter.addWidget(self.browserWidget)
-        #self.horizontalLayoutProjectViews.addWidget(self.browserWidget)
+        if model.getPreviewEnable():
+            self.browserWidget = browser.BrowserWidget(self.openUrlExtern)
+            self.projecTabSplitter.addWidget(self.browserWidget)
+        else:
+            self.browserWidget = None
+        # self.horizontalLayoutProjectViews.addWidget(self.browserWidget)
         self.installEventFilter(self)
         self.linkListView.projectLinkListChanged.connect(self.on_projectLinkListChanged)
 
@@ -120,25 +125,28 @@ class MainView(QMainWindow, Ui_MainWindow):
         self.linkListView.setModel(self.model.getCurrentProject())
 
     def setProjectHtml(self):
-        project = self.model.getCurrentProject()
-        if project:
-            url = project.getProjectUrl()
-            if url:
-                self.browserWidget.setHome(url=url)
+        if self.browserWidget:
+            project = self.model.getCurrentProject()
+            if project:
+                url = project.getProjectUrl()
+                if url:
+                    self.browserWidget.setHome(url=url)
+                else:
+                    name, descr = project.getProjectNameAndDescription()
+                    html = "<h1>" + name + "</h1>"
+                    html += "<p>" + descr + "</p>"
+                    self.browserWidget.setHome(content=html)
             else:
-                name, descr = project.getProjectNameAndDescription()
-                html = "<h1>"+name+"</h1>"
-                html+= "<p>"+descr+"</p>"
+                html = "<h1>" + "no project selected" + "</h1>"
                 self.browserWidget.setHome(content=html)
-        else:
-            html = "<h1>"+"no project selected"+"</h1>"
-            self.browserWidget.setHome(content=html)
 
-    def on_projectSelector_clicked(self, id):
+    def on_projectSelector_clicked(self, object: QAbstractButton):
         try:
+            selected_id = self.projectSelector.id(object)
+            log.debug(f"Key was pressed, id is: {selected_id}")
             count = 0
             for button in self.projectSelector.buttons():
-                if button is self.projectSelector.button(id):
+                if button is self.projectSelector.button(selected_id):
                     log.debug("selected {0} - id {1}".format(button.text(), count))
                     self.setProjectIndex(count)
                     self.projectChanged.emit()
@@ -192,7 +200,7 @@ class MainView(QMainWindow, Ui_MainWindow):
                     matches.append(i.text())
         return matches
 
-    @QtCore.pyqtSlot()
+    @QtCore.Slot()
     def on_return(self):
         # attention if you don't catch exception explicit, there is no console output if the slot function has an error
         try:
@@ -200,29 +208,29 @@ class MainView(QMainWindow, Ui_MainWindow):
             if len(self.currentMatches) > 0:
                 # auto complete, if there is currently exactly one match
                 identifier = self.currentMatches[0]
-            #print("hide mainview and emit signal {0} with value {1}".format(self.closeAndComplete, identifier))
+            # print("hide mainview and emit signal {0} with value {1}".format(self.closeAndComplete, identifier))
             self.closeAndComplete.emit(identifier)
             self.hide()
         except Exception as e:
             log.exception("exception in MainView.on_return: " + str(e))
 
-    @QtCore.pyqtSlot()
+    @QtCore.Slot()
     def on_filter_change(self):
         try:
             self.currentMatches = self.setTreeSelection(self.lineEdit.text())
         except Exception as e:
             log.exception("exception in MainView.on_filter_change: " + str(e))
 
-    @QtCore.pyqtSlot()
+    @QtCore.Slot()
     def on_about(self):
         try:
             AboutSwissKnife.about()
         except Exception as e:
             log.exception("exception in MainView.on_about: " + str(e))
 
-    @QtCore.pyqtSlot()
+    @QtCore.Slot()
     def bringToFront(self):
-        #self.lineedit.setFocus()
+        # self.lineedit.setFocus()
         # the following will remove minimized status
         # and restore window with keeping maximized/normal state
         try:
@@ -238,7 +246,7 @@ class MainView(QMainWindow, Ui_MainWindow):
 
     def hideEvent(self, event):
         log.debug("hide main view")
-        #self.save(self.settings)
+        # self.save(self.settings)
 
     def closeEvent(self, event):
         log.debug("close main view")
@@ -277,15 +285,15 @@ class MainView(QMainWindow, Ui_MainWindow):
             log.exception("MainView.restore : " + str(e))
 
     def showMessage(self, message, window_title="Information"):
-       log.debug('show message box' + str(message))
-       msgBox = QMessageBox()
-       msgBox.setIcon(QMessageBox.Information)
-       msgBox.setText(message)
-       msgBox.setWindowTitle(window_title)
-       #msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-       msgBox.setStandardButtons(QMessageBox.Ok)
-       #msgBox.buttonClicked.connect(msgButtonClick)
+        log.debug('show message box' + str(message))
+        msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Information)
+        msgBox.setText(message)
+        msgBox.setWindowTitle(window_title)
+        # msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msgBox.setStandardButtons(QMessageBox.Ok)
+        # msgBox.buttonClicked.connect(msgButtonClick)
 
-       returnValue = msgBox.exec()
-       if returnValue == QMessageBox.Ok:
-          log.debug('OK clicked')
+        returnValue = msgBox.exec()
+        if returnValue == QMessageBox.Ok:
+            log.debug('OK clicked')
